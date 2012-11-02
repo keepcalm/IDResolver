@@ -22,7 +22,6 @@ public class Main {
 	 * @throws IOException 
 	 * @throws GuiNonFatalException 
 	 */
-	@SuppressWarnings("unused")
 	public static void main(String[] args) throws GuiException, GuiNonFatalException, IOException {
 		System.out.println("Wir beginnen!");
 		for (String arg : args) {
@@ -45,16 +44,22 @@ public class Main {
 		//theLoggerThread.setDaemon(true);
 		//theLoggerThread.start();
 		//Logging.init("IDResolver");
+		beginConfigChecking(configFolderToUse);
+		
+		
+		
+		
+		
+	}
+	@SuppressWarnings("unused")
+	public static void beginConfigChecking(File cfgDir) throws GuiNonFatalException, IOException {
+		configFolderToUse = cfgDir;
 		IDTracker.init();
 		GuiProgressUpdater gui = new GuiProgressUpdater();
 		FolderDescender fr = new FolderDescender(configFolderToUse);
 		fr.run();
 		
 		IDTracker.dumpIDs();
-		
-		
-		
-		
 	}
 
 }
