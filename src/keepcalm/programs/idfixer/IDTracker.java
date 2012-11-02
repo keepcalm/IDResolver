@@ -134,12 +134,15 @@ public class IDTracker {
 		int i;
 		for (i = 0; i < itemIDs.length; i++) {
 			if (i + 1 == itemIDs.length) {
+				System.out.println("derp");
 				return 0;
 			}
 			if (itemIDs[i] == false && itemIDs[i + 1] == false) {
+				System.out.println("woo!");
 				break;
 			}
 		}
+		System.out.println("ITEMID REQ -> " + i);
 		return SHIFTED_ITEM_INDEX + i;
 	}
 	

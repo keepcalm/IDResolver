@@ -56,6 +56,8 @@ public class Main {
 		configFolderToUse = cfgDir;
 		IDTracker.init();
 		GuiProgressUpdater gui = new GuiProgressUpdater();
+		
+		GuiProgressUpdater.window.getContentPane().invalidate();
 		FolderDescender fr = new FolderDescender(configFolderToUse);
 		fr.run();
 		

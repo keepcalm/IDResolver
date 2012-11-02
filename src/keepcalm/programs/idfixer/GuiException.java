@@ -12,6 +12,15 @@ public class GuiException extends Exception {
 	/**
 	 * 
 	 */
+	
+	public static void createException(String err) {
+		try {
+			throw new GuiException(err);
+		} catch (GuiException e) {
+			;
+		}
+	}
+	
 	private static final long serialVersionUID = 1L;
 	
 	public GuiException(String error) {

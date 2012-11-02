@@ -8,12 +8,12 @@ import java.awt.Dimension;
 
 import javax.swing.Box;
 import javax.swing.JButton;
-import javax.swing.JFrame;
+import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JProgressBar;
 
 public class GuiProgressUpdater {
-	private static JFrame window;
+	public static JDialog window;
 	public static JProgressBar progBar;
 	private static Box box;
 	public static JButton button;
@@ -80,9 +80,10 @@ public class GuiProgressUpdater {
 	
 	public GuiProgressUpdater() {
 		
-		window = new JFrame("Configuration fixer progress");
+		window = new JDialog(MainWindow.instance, "Configuration fixer progress");
 		window.setLocationByPlatform(true);
 		window.setLocation(60, 70);
+		//window.
 		box = Box.createVerticalBox();
 		window.add(box);
 		currentActivity = new JLabel(String.format(htmlFormat, new Object[] {"Setting up..."}));
@@ -109,7 +110,9 @@ public class GuiProgressUpdater {
 		box.add(Box.createRigidArea(new Dimension(0,10)));
 		window.setSize(400, 120);
 		//window.setBounds(900, 350, 400, 200);
-		
+		window.invalidate();
+		box.invalidate();
+
 		window.setVisible(true);
 		
 		
