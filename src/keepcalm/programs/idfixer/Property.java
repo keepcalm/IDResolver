@@ -4,7 +4,14 @@
  */
 
 package keepcalm.programs.idfixer;
-
+/**
+ * 
+ * Straight from forge.
+ * Thanks, Lex and cpw
+ * 
+ * @author the MinecraftForge contributors
+ *
+ */
 public class Property
 {
     public enum Type

@@ -7,6 +7,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.JCheckBox;
+
 public class BeginMouseListener implements MouseListener {
 
 	@Override
@@ -28,6 +30,13 @@ public class BeginMouseListener implements MouseListener {
 				//MainWindow.instance.setVisible(false);
 				//try {
 				//Thread.sleep(1000);
+				List<String> boxes = new ArrayList<String>();
+				for (JCheckBox i : MainWindow.boxes) {
+					if (i.isSelected()) {
+						boxes.add(i.getText());
+					}
+				}
+				FolderDescender.topPriority.addAll(boxes);
 				Thread mainThread = new Thread(new MainRunner());
 				mainThread.start();
 

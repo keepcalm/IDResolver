@@ -5,7 +5,6 @@ import java.io.FilenameFilter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.ConcurrentModificationException;
 import java.util.Iterator;
 import java.util.List;
 
@@ -32,14 +31,12 @@ public class FolderDescender {
 	}
 
 	private File folder;
-	private static final List<String> topPriority = new ArrayList<String>();
+	public static final List<String> topPriority = new ArrayList<String>();
 	List<File> folders;
 	List<File> files;
 	private boolean isChild;
 
 	public FolderDescender(File folder) {
-		// hard-coded support
-		topPriority.add("extrabiomes");
 		this.folder = folder;
 		folders = Arrays.asList(folder.listFiles(new FolderMatcher()));
 		Thread.yield();

@@ -30,8 +30,9 @@ public class MainWindow extends JFrame {
 	public static MainWindow instance;
 	public static String[] comboBoxOpts;
 	private static JList list;
-	private static List<JCheckBox> boxes = new ArrayList<JCheckBox>();
+	public static List<JCheckBox> boxes = new ArrayList<JCheckBox>();
 	private static JPanel panel;
+	private JLabel lblNewLabel;
 	
 	/**
 	 * Launch the application.
@@ -59,27 +60,35 @@ public class MainWindow extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		GridBagLayout gridBagLayout = new GridBagLayout();
-		gridBagLayout.columnWidths = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+		gridBagLayout.columnWidths = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 		gridBagLayout.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-		gridBagLayout.columnWeights = new double[]{0.0, 0.0, 1.0, 1.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		gridBagLayout.columnWeights = new double[]{0.0, 0.0, 0.0, 1.0, 1.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		gridBagLayout.rowWeights = new double[]{0.0, 0.0, 1.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		getContentPane().setLayout(gridBagLayout);
 		
 		JLabel lblHi = new JLabel("Configuration");
 		lblHi.setFont(new Font("Dialog", Font.BOLD, 20));
 		GridBagConstraints gbc_lblHi = new GridBagConstraints();
-		gbc_lblHi.gridwidth = 7;
-		gbc_lblHi.insets = new Insets(0, 60, 5, 5);
+		gbc_lblHi.gridwidth = 10;
+		gbc_lblHi.insets = new Insets(0, 0, 5, 5);
 		gbc_lblHi.gridx = 3;
 		gbc_lblHi.gridy = 0;
 		getContentPane().add(lblHi, gbc_lblHi);
 		
 		JButton btnNewButton = new JButton("Go!");
 		btnNewButton.addMouseListener(new BeginMouseListener());
+		
+		lblNewLabel = new JLabel("Configs to process first:");
+		GridBagConstraints gbc_lblNewLabel = new GridBagConstraints();
+		gbc_lblNewLabel.gridwidth = 7;
+		gbc_lblNewLabel.insets = new Insets(50, 0, 5, 5);
+		gbc_lblNewLabel.gridx = 4;
+		gbc_lblNewLabel.gridy = 1;
+		getContentPane().add(lblNewLabel, gbc_lblNewLabel);
 		GridBagConstraints gbc_btnNewButton = new GridBagConstraints();
 		gbc_btnNewButton.gridwidth = 4;
 		gbc_btnNewButton.insets = new Insets(0, 0, 5, 0);
-		gbc_btnNewButton.gridx = 12;
+		gbc_btnNewButton.gridx = 13;
 		gbc_btnNewButton.gridy = 1;
 		getContentPane().add(btnNewButton, gbc_btnNewButton);
 		
@@ -93,7 +102,7 @@ public class MainWindow extends JFrame {
 		gbc_comboBox.gridwidth = 11;
 		gbc_comboBox.insets = new Insets(0, 10, 5, 5);
 		gbc_comboBox.fill = GridBagConstraints.HORIZONTAL;
-		gbc_comboBox.gridx = 1;
+		gbc_comboBox.gridx = 2;
 		gbc_comboBox.gridy = 1;
 		getContentPane().add(comboBox, gbc_comboBox);
 		
@@ -104,7 +113,7 @@ public class MainWindow extends JFrame {
 		gbc_panel.gridwidth = 13;
 		gbc_panel.insets = new Insets(10, 0, 5, 5);
 		gbc_panel.fill = GridBagConstraints.BOTH;
-		gbc_panel.gridx = 1;
+		gbc_panel.gridx = 2;
 		gbc_panel.gridy = 2;
 		getContentPane().add(panel, gbc_panel);
 		panel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
@@ -129,6 +138,10 @@ public class MainWindow extends JFrame {
 		for (String j : names) {
 			//System.out.println(j);
 			JCheckBox cb = new JCheckBox(j);
+			if (j.startsWith("extrabiomes")) {
+				// recommend support for extrabiomes
+				cb.setSelected(true);
+			}
 			boxes.add(cb);
 		}
 	}

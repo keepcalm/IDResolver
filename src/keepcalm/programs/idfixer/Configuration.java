@@ -31,6 +31,12 @@ import static keepcalm.programs.idfixer.Property.Type.*;
 /**
  * This class offers advanced configurations capabilities, allowing to provide
  * various categories for configuration variables.
+ * <br /><br />
+ * Straight from forge.
+ * Thanks, Lex and cpw
+ * 
+ * @author MinecraftForge
+ *
  */
 public class Configuration
 {
