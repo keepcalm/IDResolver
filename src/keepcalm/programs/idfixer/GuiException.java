@@ -24,7 +24,7 @@ public class GuiException extends Exception {
 	private static final long serialVersionUID = 1L;
 	
 	public GuiException(String error) {
-		System.out.println(error);
+		Logging.logger.info(error);
 		
 		JFrame frame = new JFrame();
 		frame.setName("ID resolver error");
@@ -37,7 +37,7 @@ public class GuiException extends Exception {
 		//frame.setLayout(new FlowLayout());
 		frame.setSize(100, 200);
 		frame.getContentPane().setLayout(new FlowLayout());
-		frame.getContentPane().add(err, JFrame.CENTER_ALIGNMENT);
+		frame.getContentPane().add(err, Component.CENTER_ALIGNMENT);
 		frame.getContentPane().add(but, Component.BOTTOM_ALIGNMENT);
 		frame.pack();
 		frame.setVisible(true);

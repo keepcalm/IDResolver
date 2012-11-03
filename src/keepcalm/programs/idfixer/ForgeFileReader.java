@@ -45,7 +45,7 @@ public class ForgeFileReader implements IConfigFileExaminer {
 	@Override
 	public void examineNextFile() throws GuiNonFatalException, IOException {
 		if (!fileIt.hasNext()) {
-			System.out.println("Finished!");
+			Logging.logger.info("Finished!");
 			GuiProgressUpdater.updateActivity("Done!");
 			GuiProgressUpdater.progBar.setVisible(false);
 			GuiProgressUpdater.button.setText("Quit!");
@@ -58,7 +58,7 @@ public class ForgeFileReader implements IConfigFileExaminer {
 	
 	public static void examineFile(File theFile) throws GuiNonFatalException, IOException {
 		
-		System.out.println("Examining file: " + theFile.getPath());
+		Logging.logger.info("Examining file: " + theFile.getPath());
 		GuiProgressUpdater.changeFile(theFile.getName());
 		GuiProgressUpdater.updateActivity("Loading file...");
 		boolean doBlocks = true;
@@ -70,14 +70,14 @@ public class ForgeFileReader implements IConfigFileExaminer {
 		int blocksize;
 		int itemsize;
 		if (blocks == null || blocks.isEmpty()) {
-			System.out.println("No blocks!");
+			Logging.logger.info("No blocks!");
 			doBlocks = false;
 			blocksize = 0;
 		}
 		else 
 			blocksize = blocks.size();
 		if (items == null || items.isEmpty()) {
-			System.out.println("No Items");
+			Logging.logger.info("No Items");
 			doItems = false;
 			if (!doBlocks)
 				return;
@@ -93,19 +93,19 @@ public class ForgeFileReader implements IConfigFileExaminer {
 			for (Property val : blocks.values()) {
 				GuiProgressUpdater.increaseProg();
 				if (!val.isIntValue()) {
-					System.out.println("Skipping " + val.getName() + ", not an int");
+					Logging.logger.info("Skipping " + val.getName() + ", not an int");
 				}
 				if (IDTracker.isBlockIDAvailable(val.getInt())) {
 					
 					if (baseBlockID == 0)
 						baseBlockID = val.getInt();
 					// leave config alone
-					System.out.println(val.getName() + " is OK");
+					Logging.logger.info(val.getName() + " is OK");
 					IDTracker.setBlockIDUsed(val.getInt());
 					continue;
 				}
 				else {
-					System.out.println("Fixing property: " + val.getName());
+					Logging.logger.info("Fixing property: " + val.getName());
 					if (baseBlockID > 0) {
 						if (MathsHelper.isIntInRange(baseBlockID, 10, IDTracker.getNextBlockID())) {
 							// ok
@@ -135,7 +135,7 @@ public class ForgeFileReader implements IConfigFileExaminer {
 			int baseBlockID = 0;
 			for (Property val : items.values()) {
 				GuiProgressUpdater.increaseProg();
-				System.out.println(val.getName() + ":");
+				Logging.logger.info(val.getName() + ":");
 				if (IDTracker.isItemIDAvailable(val.getInt())) {
 					if (baseBlockID == 0)
 						baseBlockID = val.getInt();

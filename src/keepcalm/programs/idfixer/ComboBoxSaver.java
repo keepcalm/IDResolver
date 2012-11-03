@@ -56,7 +56,7 @@ public class ComboBoxSaver {
 		
 		for (String opt : comboBoxOptions) {
 			
-			System.out.println(opt);
+			Logging.logger.info(opt);
 			j.write(opt);
 			j.newLine();
 		}

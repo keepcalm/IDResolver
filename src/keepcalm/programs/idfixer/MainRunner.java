@@ -1,6 +1,5 @@
 package keepcalm.programs.idfixer;
 
-import java.io.BufferedWriter;
 import java.io.PrintWriter;
 
 public class MainRunner implements Runnable {

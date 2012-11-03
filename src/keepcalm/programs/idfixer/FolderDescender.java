@@ -49,7 +49,7 @@ public class FolderDescender {
 		this.isChild = child;
 	}
 	public void run() throws GuiNonFatalException, IOException {
-		System.out.println("Inspect folder: " + folder.getAbsolutePath());
+		Logging.logger.info("Inspect folder: " + folder.getAbsolutePath());
 		// necessary to stop concurrentModificationExceptions
 		List<String> theAllNewTP = Arrays.asList(topPriority.toArray(new String[0]));
 		Iterator<String> tp = theAllNewTP.iterator();
@@ -60,15 +60,15 @@ public class FolderDescender {
 				String nxt = tp.next();
 
 				File cfgFile = new File(Main.configFolderToUse, nxt);
-				System.out.println(cfgFile.getAbsolutePath());
+				Logging.logger.info(cfgFile.getAbsolutePath());
 				if (!cfgFile.exists()) {
-					System.out.println("Skipping non-existant file or folder: " + cfgFile.getName());
+					Logging.logger.info("Skipping non-existant file or folder: " + cfgFile.getName());
 				}
 				else if (cfgFile.isDirectory()) {
 					FolderDescender f = new FolderDescender(cfgFile, true);
 					f.run();
 					f = null;
-					System.out.println("Back!");
+					Logging.logger.info("Back!");
 					if (tp.hasNext())
 						continue;
 					else
@@ -78,10 +78,10 @@ public class FolderDescender {
 				else {
 					ForgeFileReader.examineFile(cfgFile);
 				}
-				System.out.println("Hi!");
+				Logging.logger.info("Hi!");
 			}
 		}
-		System.out.println("CONTINUING..." + isChild);
+		Logging.logger.info("CONTINUING..." + isChild);
 		Iterator<File> it = folders.iterator();
 		while (it.hasNext()) {
 			File t = it.next();
@@ -93,9 +93,9 @@ public class FolderDescender {
 			File t = it.next();
 			ForgeFileReader.examineFile(t);
 		}
-		System.out.println("Complete!");
+		Logging.logger.info("Complete!");
 		if (!isChild) {
-			System.out.println("Finished!");
+			Logging.logger.info("Finished!");
 			GuiProgressUpdater.updateActivity("Done!");
 			GuiProgressUpdater.progBar.setVisible(false);
 			GuiProgressUpdater.button.setText("Quit!");

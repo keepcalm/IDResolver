@@ -25,7 +25,7 @@ public class IDTracker {
 		Arrays.fill(blockIDs, false);
 		Arrays.fill(itemIDs, false);
 		for (int i = 0; i < 145; i++) {
-			//System.out.println("The block ID " + (i + 1) + " is not available!");
+			//Logging.logger.info("The block ID " + (i + 1) + " is not available!");
 			blockIDs[i] = true;
 		}
 		
@@ -49,26 +49,25 @@ public class IDTracker {
 	}
 	
 	public static boolean isBlockIDAvailable(int id) {
-		System.out.print("BlockID " + id);
 		if (id <= 0 || id > 4096 || blockIDs[id - SHIFTED_BLOCK_INDEX]) {
-			System.out.println(" is not available!");
+			Logging.logger.info("BlockID " + id + "is not available!");
 			return false;
 		}
-		System.out.println(" is available!");
+		Logging.logger.info("BlockID " + id + " is available!");
 		return true;
 	}
 	
 	public static boolean isItemIDAvailable(int id) {
 		System.out.print("ItemID " + id);
 		if (id <= 0) {
-			System.out.println(" isn't available!");
+			Logging.logger.info("ItemID" + id +" isn't available!");
 			return false;
 		}
 		if (id <= SHIFTED_ITEM_INDEX && System.getProperty("idres.needBigItemID", "0") == "0") {
-			System.out.println(" is too small for my liking!");
+			Logging.logger.info("ItemID" + id +"is too small for my liking!");
 			return false;
 		}
-		System.out.println(" is OK");
+		Logging.logger.info("ItemID" + id +"  is OK");
 		if (id > SHIFTED_ITEM_INDEX) {
 			return itemIDs[id - (SHIFTED_ITEM_INDEX + 1)];
 		}
@@ -134,15 +133,15 @@ public class IDTracker {
 		int i;
 		for (i = 0; i < itemIDs.length; i++) {
 			if (i + 1 == itemIDs.length) {
-				System.out.println("derp");
+				Logging.logger.info("derp");
 				return 0;
 			}
 			if (itemIDs[i] == false && itemIDs[i + 1] == false) {
-				System.out.println("woo!");
+				Logging.logger.info("woo!");
 				break;
 			}
 		}
-		System.out.println("ITEMID REQ -> " + i);
+		Logging.logger.info("ITEMID REQ -> " + i);
 		return SHIFTED_ITEM_INDEX + i;
 	}
 	

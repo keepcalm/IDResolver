@@ -23,7 +23,7 @@ public class Main {
 	 * @throws GuiNonFatalException 
 	 */
 	public static void main(String[] args) throws GuiException, GuiNonFatalException, IOException {
-		System.out.println("Wir beginnen!");
+		Logging.logger.info("Wir beginnen!");
 		for (String arg : args) {
 			
 			if (arg.startsWith("--config=")) {

@@ -79,7 +79,7 @@ public class Configuration
     public Configuration(File file)
     {
         this.file = file;
-        String basePath = ((File)file).getAbsolutePath().replace(File.separatorChar, '/').replace("/.", "");
+        String basePath = file.getAbsolutePath().replace(File.separatorChar, '/').replace("/.", "");
         String path = file.getAbsolutePath().replace(File.separatorChar, '/').replace("/./", "/").replace(basePath, "");
         if (PARENT != null)
         {
@@ -403,7 +403,7 @@ public class Configuration
 
             if (file.canWrite())
             {
-            	System.out.println("Writing config...");
+            	Logging.logger.info("Writing config...");
                 FileOutputStream fos = new FileOutputStream(file);
                 BufferedWriter buffer = new BufferedWriter(new OutputStreamWriter(fos, defaultEncoding));
 
