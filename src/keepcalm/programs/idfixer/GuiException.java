@@ -31,7 +31,8 @@ public class GuiException extends Exception {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		JTextArea err = new JTextArea(error);
-		JButton but = new JButton("OK");
+		err.setEditable(false);
+		JButton but = new JButton("Done");
 		but.addMouseListener(new QuitListener());
 		//frame.setLayout(new FlowLayout());
 		frame.setSize(100, 200);
