@@ -163,6 +163,7 @@ public class ForgeFileReader implements IConfigFileExaminer {
 			cfg.save();
 		}
 		cfg.save();
+		return;
 	}
 
 }

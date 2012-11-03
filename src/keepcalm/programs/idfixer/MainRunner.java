@@ -11,8 +11,8 @@ public class MainRunner implements Runnable {
 		try {
 			Main.main(new String[] {"--config=" + (String) MainWindow.comboBox.getSelectedItem()});
 		} catch (Exception e) {
-			BufferedWriter b = new BufferedWriter(new DummyWriter());
-			PrintWriter c = new PrintWriter(b);
+			e.printStackTrace();
+			PrintWriter c = new PrintWriter(new DummyWriter());
 			e.printStackTrace(c);
 			
 		}
